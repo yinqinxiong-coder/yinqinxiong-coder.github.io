@@ -1,9 +1,9 @@
-name: Deploy Hexo to GitHub Pages
+name: Deploy Jekyll to GitHub Pages
 
 on:
   push:
     branches:
-      - gh-pages
+      - dev-me
   workflow_dispatch:
 
 permissions:
@@ -19,19 +19,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
+      - name: Check out the repository
+        uses: actions/checkout@v4
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Build the Jekyll site
+        uses: actions/jekyll-build-pages@v1
         with:
-          version: 11
-      - uses: actions/setup-node@v4
+          source: ./
+          destination: ./_site
+      - name: Upload the built site
+        uses: actions/upload-pages-artifact@v3
         with:
-          node-version: 24
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm exec hexo generate
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./public
+          path: ./_site
 
   deploy:
     needs: build

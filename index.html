@@ -1,0 +1,38 @@
+---
+layout: default
+---
+<section id="top" class="wrap hero" aria-labelledby="hero-title">
+  <div>
+    <p class="eyebrow">Personal blog · {{ 'now' | date: '%Y' }}</p>
+    <h1 id="hero-title">你好，我是<br>{{ site.author }}。</h1>
+    <p class="hero-copy">这里记录算法与数据结构学习，以及个人笔记。</p>
+    <div class="hero-actions">
+      <a class="button primary" href="#writing">读读我的文章</a>
+      <a class="button secondary" href="{{ site.github_url }}">查看 GitHub</a>
+    </div>
+  </div>
+  <div class="hero-card" aria-label="Yinqin Xiong 的字母标识"><div class="avatar">YX</div></div>
+</section>
+
+<section id="writing" class="wrap section" aria-labelledby="writing-title">
+  <div class="section-heading"><div><p class="eyebrow">Latest notes</p><h2 id="writing-title">最近写了什么</h2><div class="rule"></div></div><p>文章以 Markdown 保存；新的内容放进 `_posts` 文件夹。</p></div>
+  <div class="article-grid">
+    {% for post in site.posts limit: 6 %}
+    <article class="card">
+      <div class="card-meta">{{ post.date | date: '%Y.%m.%d' }}{% if post.tags %} · {{ post.tags | first }}{% endif %}</div>
+      <h3>{{ post.title }}</h3>
+      <p>{{ post.excerpt | strip_html | truncate: 100 }}</p>
+      <a class="card-link" href="{{ post.url | relative_url }}">阅读文章 →</a>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section id="topics" class="wrap section" aria-labelledby="topics-title">
+  <div class="section-heading"><div><p class="eyebrow">Learning notes</p><h2 id="topics-title">学习主题</h2><div class="rule"></div></div><p>主题根据当前博客文章整理；该账号暂无公开项目仓库。</p></div>
+  <div class="project-grid">
+    <article class="card"><div class="card-meta">ALGORITHMS</div><h3>算法题解</h3><p>记录数组、链表和字符串等题目的思路与练习。</p></article>
+    <article class="card"><div class="card-meta">DATA STRUCTURES</div><h3>数据结构</h3><p>整理链表、树等常见结构相关的学习笔记。</p></article>
+    <article class="card"><div class="card-meta">MARKDOWN</div><h3>个人笔记</h3><p>使用 Markdown 编写文章，放在 _posts 文件夹中。</p></article>
+  </div>
+</section>

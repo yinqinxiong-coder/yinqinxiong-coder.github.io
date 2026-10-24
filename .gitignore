@@ -8,3 +8,9 @@ public/
 _multiconfig.yml
 source/about/themes/
 _stray_theme_copy/
+
+# Jekyll output
+_site/
+.jekyll-cache/
+.jekyll-metadata
+/vendor/
